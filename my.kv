@@ -1,0 +1,287 @@
+<CreateAccountWindow>:
+    name: "create"
+
+    namee: namee
+    email: email
+    password: passw
+
+    FloatLayout:
+        cols:1
+
+        FloatLayout:
+            size: root.width, root.height/2
+
+            Label:
+                text: "Create an Account"
+                color: (237/255, 24/255, 32/255, 1)
+                size_hint: 0.8, 0.2
+                pos_hint: {"x":0.1, "top":1}
+                font_size: (root.width**2 + root.height**2) / 14**4
+
+            Label:
+                size_hint: 0.5,0.12
+                color: (237/255, 24/255, 32/255, 1)
+                pos_hint: {"x":0, "top":0.8}
+                text: "Name: "
+                font_size: (root.width**2 + root.height**2) / 14**4
+
+            TextInput:
+                pos_hint: {"x":0.5, "top":0.8}
+                size_hint: 0.4, 0.12
+                id: namee
+                multiline: False
+                font_size: (root.width**2 + root.height**2) / 14**4
+
+            Label:
+                size_hint: 0.5,0.12
+                pos_hint: {"x":0, "top":0.8-0.13}
+                text: "Email: "
+                color: (237/255, 24/255, 32/255, 1)
+                font_size: (root.width**2 + root.height**2) / 14**4
+
+            TextInput:
+                pos_hint: {"x":0.5, "top":0.8-0.13}
+                size_hint: 0.4, 0.12
+                id: email
+                multiline: False
+                font_size: (root.width**2 + root.height**2) / 14**4
+
+            Label:
+                size_hint: 0.5,0.12
+                pos_hint: {"x":0, "top":0.8-0.13*2}
+                text: "Password: "
+                color: (237/255, 24/255, 32/255, 1)
+                font_size: (root.width**2 + root.height**2) / 14**4
+
+            TextInput:
+                pos_hint: {"x":0.5, "top":0.8-0.13*2}
+                size_hint: 0.4, 0.12
+                id: passw
+                multiline: False
+                password: True
+                font_size: (root.width**2 + root.height**2) / 14**4
+
+        Button:
+            pos_hint:{"x":0.3,"y":0.25}
+            size_hint: 0.4, 0.1
+            font_size: (root.width**2 + root.height**2) / 17**4
+            text: "Already have an Account? Log In"
+            background_normal: "QCE-Red.png"
+            background_down: "QCE-Blue.png"
+            on_release:
+                root.manager.transition.direction = "left"
+                root.login()
+
+        Button:
+            pos_hint:{"x":0.2,"y":0.05}
+            size_hint: 0.6, 0.15
+            text: "Submit"
+            font_size: (root.width**2 + root.height**2) / 14**4
+            background_normal: "QCE-Red.png"
+            background_down: "QCE-Blue.png"
+            on_release:
+                root.manager.transition.direction = "left"
+                root.submit()
+
+
+<LoginWindow>:
+    name: "login"
+    email: email
+    password: password
+
+    FloatLayout:
+        Image:
+            source: 'QCE-logo.png'
+            pos_hint: {'x': 0.33 , 'top':1}
+            size_hint: 0.4, 0.4
+            allow_stretch: False
+            keep_ratio: False
+
+        Label:
+        #RGB OF RED: 237, 24, 32 ::: RGB OF BLUE: 8, 21, 73
+            text:"Email: "
+            bold: True
+            font_size: (root.width**2 + root.height**2) / 13**4
+            pos_hint: {"x":0.05, "top":0.65}
+            color: (237/255, 24/255, 32/255, 1)
+            size_hint: 0.40, 0.20
+
+        TextInput:
+            id: email
+            font_size: (root.width**2 + root.height**2) / 13**4
+            multiline: False
+            pos_hint: {"x": 0.35 , "top":0.60}
+            size_hint: 0.4, 0.10
+
+        Label:
+            text:"Password: "
+            bold: True
+            color: (237/255, 24/255, 32/255, 1)
+            font_size: (root.width**2 + root.height**2) / 13**4
+            pos_hint: {"x":0.05, "top":0.45}
+            size_hint: 0.40, 0.20
+
+        TextInput:
+            id: password
+            font_size: (root.width**2 + root.height**2) / 13**4
+            multiline: False
+            password: True
+            pos_hint: {"x":0.35, "top":0.40}
+            size_hint: 0.4, 0.10
+
+        Button:
+            pos_hint:{"x":0.2,"y":0.05}
+            size_hint: 0.6, 0.1
+            font_size: (root.width**2 + root.height**2) / 11.5**4
+            text: "Login"
+            background_normal:'QCE-Red.png'
+            background_down:'QCE-Blue.png'
+            on_release:
+                root.manager.transition.direction = "up"
+                root.loginBtn()
+
+        Button:
+            pos_hint:{"x":0.3,"y":0.17}
+            size_hint: 0.4, 0.1
+            font_size: (root.width**2 + root.height**2) / 13**4
+            text: "Create Account"
+            background_normal:'QCE-Red.png'
+            background_down:'QCE-Blue.png'
+            on_release:
+                root.manager.transition.direction = "right"
+                root.createBtn()
+
+<NavigatorMenu>:
+    FloatLayout:
+        Button:
+            pos_hint:{"x":0.9, "y": 0.9}
+            text: "Log Out"
+            size_hint:0.1,0.1
+            background_normal:'QCE-Red.png'
+            background_down:'QCE-Blue.png'
+            on_release:
+                app.root.current = "login"
+                root.manager.transition.direction = "down"
+        Button:
+            pos_hint: {'x': 0.2, 'y': 0.3}
+            size_hint: 0.3, 0.4
+            background_normal:'QCE-Red.png'
+            background_down:'QCE-Blue.png'
+            text: "Receipt\nSender"
+            on_release:
+                app.root.current = "camera"
+                root.manager.transition.direction = "left"
+
+        Button:
+            pos_hint: {'x': 0.6, 'y': 0.3}
+            size_hint: 0.3, 0.4
+            background_normal:'QCE-Red.png'
+            background_down:'QCE-Blue.png'
+            text: "Sundry\nSender"
+            on_release:
+                app.root.current = "supplies"
+                root.manager.transition.direction = "left"
+
+<SupplySelection>:
+    FloatLayout
+        Button:
+            pos_hint:{"x":0.8, "y": 0.8}
+            size_hint:0.2,0.2
+            background_normal:'QCE-Red.png'
+            background_down:'QCE-Blue.png'
+            text: "Log Out"
+            text_size: self.size
+            on_release:
+                app.root.current = "login"
+                root.manager.transition.direction = "down"
+        Button:
+            text: 'Return to Main Menu'
+            text_size: self.size
+            size_hint: 0.2, 0.1
+            background_normal:'QCE-Red.png'
+            background_down:'QCE-Blue.png'
+            pos_hint: {'x': 0.8, 'y': 0.1}
+            on_release:
+                app.root.current = "menu"
+                root.manager.transition.direction = "right"
+
+        Button:
+            text:'Continue\nTo\nEquipment'
+            pos_hint:{'x': 0.8, 'y': 0.35}
+            size_hint: (0.2, 0.25)
+            background_normal: 'QCE-Red.png'
+            background_down:'QCE-Blue.png'
+            on_release:
+                app.root.current = "equip"
+                root.manager.transition.direction = "left"
+
+<EquipmentSelection>:
+    review : reviewbtn
+    FloatLayout
+        Button:
+            pos_hint:{"x":0.8, "y": 0.8}
+            size_hint:0.2,0.2
+            background_normal:'QCE-Red.png'
+            background_down:'QCE-Blue.png'
+            text: "Log Out"
+            text_size: self.size
+            on_release:
+                app.root.current = "login"
+                root.manager.transition.direction = "down"
+        Button:
+            text: 'Return to Main Menu'
+            text_size: self.size
+            size_hint: 0.2, 0.1
+            background_normal:'QCE-Red.png'
+            background_down:'QCE-Blue.png'
+            pos_hint: {'x': 0.8, 'y': 0.1}
+            on_release:
+                app.root.current = "menu"
+                root.manager.transition.direction = "right"
+
+        Button:
+            id: reviewbtn
+            text:'Review\n&\nSend'
+            pos_hint:{'x': 0.8, 'y': 0.35}
+            size_hint: (0.2, 0.25)
+            background_normal: 'QCE-Red.png'
+            background_down:'QCE-Blue.png'
+            on_release:
+                app.root.current = "confirm"
+
+                root.manager.transition.direction = "left"
+
+<SundryConfirmation>:
+    FloatLayout
+        Button:
+            pos_hint:{"x":0.8, "y": 0.8}
+            size_hint:0.2,0.2
+            background_normal:'QCE-Red.png'
+            background_down:'QCE-Blue.png'
+            text: "Log Out"
+            on_release:
+                app.root.current = "login"
+                root.manager.transition.direction = "down"
+        Button:
+            text: 'Return to Main Menu'
+            size_hint: 0.2, 0.1
+            background_normal:'QCE-Red.png'
+            background_down:'QCE-Blue.png'
+            pos_hint: {'x': 0.9, 'y': 0.1}
+            on_release:
+                app.root.current = "menu"
+                root.manager.transition.direction = "down"
+
+
+<CameraWindow>:
+    FloatLayout
+        Button:
+            pos_hint:{"x":0.9, "y": 0.9}
+            size_hint:0.1,0.1
+            background_normal:'QCE-Red.png'
+            background_down:'QCE-Blue.png'
+            text: "Log Out"
+            on_release:
+                app.root.current = "login"
+                root.manager.transition.direction = "down"
+
